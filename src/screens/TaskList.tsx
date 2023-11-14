@@ -1,16 +1,31 @@
 import React from 'react';
-import { FlatList, Text, Button } from 'react-native';
-import { TaskListProps } from '../types/TaskListProps';
+import { FlatList } from 'react-native';
+import { TaskList, Task } from '../types/globalInterfaces';
+import ListItem from '../components/ListItem';
 
-const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
+interface TaskListProps {
+  onUpdateTask: (task: Task) => void;
+  onDeleteTask: (task: Task) => void;
+  tasks: Task[];
+}
+
+const TaskList: React.FC<TaskListProps> = ({
+  onUpdateTask,
+  onDeleteTask,
+  tasks,
+}) => {
   return (
-    <>
-      <FlatList
-        data={tasks}
-        keyExtractor={(item) => item.list_id.toString()}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-      />
-    </>
+    <FlatList
+      data={tasks.filter((item) => item.deleted === false)}
+      keyExtractor={(item) => item.list_id.toString()}
+      renderItem={({ item }) => (
+        <ListItem
+          onUpdateTask={onUpdateTask}
+          onDeleteTask={onDeleteTask}
+          task={item}
+        />
+      )}
+    />
   );
 };
 

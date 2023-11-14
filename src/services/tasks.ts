@@ -1,5 +1,5 @@
 import api from '../api';
-import { Task, TaskListProps } from '../types/TaskListProps';
+import { Task, TaskList } from '../types/globalInterfaces';
 
 export const getTasks = async () => {
   const response = await api.get('/todolist');
@@ -13,6 +13,13 @@ export const addTask = async (task: Task) => {
   return response.data;
 };
 
-export const updateTask = async () => {};
+export const updateTask = async (task: Task) => {
+  const response = await api.put(`/todolist/${task.list_id}`, task);
+  console.log(response.data);
+  return response.data;
+};
 
-export const deleteTask = async () => {};
+export const deleteTask = async (task: Task) => {
+  const response = await api.delete(`/todolist/${task.list_id}`);
+  return response.data;
+};
