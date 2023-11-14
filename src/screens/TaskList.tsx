@@ -10,7 +10,6 @@ const TaskList: React.FC<TaskListProps> = ({ tasks }) => {
         keyExtractor={(item) => item.list_id.toString()}
         renderItem={({ item }) => <Text>{item.title}</Text>}
       />
-      <Button title="Adicionar Tarefa" onPress={() => {}} />
     </>
   );
 };

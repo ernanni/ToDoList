@@ -24,7 +24,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        paddingTop: 32,
+        paddingBottom: 32,
+        justifyContent: 'center',
+      }}
+    >
       <Text>Minhas Tarefas</Text>
       <TaskList tasks={tasks} />
       <AddTask onAddTask={handleAddTask} />
