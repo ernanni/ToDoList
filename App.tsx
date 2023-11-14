@@ -1,26 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
 import TaskList from './src/screens/TaskList';
 import AddTask from './src/screens/AddTask';
 import { getTasks, addTask } from './src/services/tasks';
-import { Task, TaskProps, TaskListProps } from './src/types/TaskListProps';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { createStackNavigator } from '@react-navigation/stack';
-
-type RootStackParamList = {
-  TaskList: undefined;
-  AddTask: undefined;
-};
-
-type TaskListScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'TaskList'
->;
-
-interface TaskListProps {
-  navigation: TaskListScreenNavigationProp;
-}
-
-const RootStack = createStackNavigator<RootStackParamList>();
+import { Task, TaskProps } from './src/types/TaskListProps';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
@@ -41,21 +24,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <RootStack.Navigator initialRouteName="TaskList">
-      <RootStack.Screen name="TaskList" component={TaskList} />
-      <RootStack.Screen
-        name="AddTask"
-        component={AddTask}
-        options={{ onAddTask: { handleAddTask } }}
-      />
-    </RootStack.Navigator>
-  );
-};
-/*
     <View>
       <Text>Minhas Tarefas</Text>
       <TaskList tasks={tasks} />
       <AddTask onAddTask={handleAddTask} />
     </View>
-    */
+  );
+};
+
 export default App;
