@@ -30,8 +30,6 @@ const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
         value={taskDescription}
         onChangeText={setTaskDescription}
       />
-      <Button title="Adicionar Tarefa" onPress={handleAddTask} />
-      <Button title="Voltar" onPress={handleAddTask} />
     </View>
   );
 };
